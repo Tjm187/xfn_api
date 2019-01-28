@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="bt1">获取所有菜品类别</button>
+    <button id="bt2">删除所有菜品类别</button>
+    <button id="bt3">添加所有菜品类别</button>
+    <button id="bt4">修改所有菜品类别</button>
+    <script src="../axios.min.js"></script>
+    <script>
+        bt1.onclick = function(){
+            axios.get('http://127.0.0.1:8090/admin/category').then((result)=>{
+                console.log("获取的结果"+result)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        bt2.onclick = function(){
+            axios.delete('http://127.0.0.1:8090/admin/category/1').then((result)=>{
+                console.log('删除成功'+result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        bt3.onclick = function(){
+            var data = {cname: '恐龙类'}
+            axios.post('http://127.0.0.1:8090/admin/category',data).then((result)=>{
+                console.log('添加新类别成功'+result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        bt4.onclick = function(){
+            var data = {cid: 6,cname: '恐龙类'}
+            axios.put('http://127.0.0.1:8090/admin/category',data).then((result)=>{
+                console.log('修改类别成功'+result.data.msg);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+    </script>
+</body>
+</html>
